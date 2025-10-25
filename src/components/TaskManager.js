@@ -13,7 +13,7 @@ const TaskManager = () => {
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]); 
 
   const fetchTasks = () => {
     axios.get(`${BACKEND_URL}/api/tasks`)

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import './Register.css';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import GoogleLoginButton from '../components/GoogleLoginButton'; // ✅ import the button
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -42,8 +42,9 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/auth/register`, payload);
-      
+      // ✅ removed unused response variable
+      await axios.post(`${BACKEND_URL}/api/auth/register`, payload);
+
       Swal.fire({
         icon: 'success',
         title: 'Registration Successful',
@@ -114,7 +115,6 @@ const Register = () => {
 
           <button type="submit">Register</button>
 
-          {/* ✅ Google login button below the form */}
           <div style={{ marginTop: '10px' }}>
             <GoogleLoginButton />
           </div>
@@ -129,6 +129,8 @@ const Register = () => {
 };
 
 export default Register;
+
+
 
 
 // import React, { useState } from 'react';
@@ -149,6 +151,7 @@ export default Register;
 //   });
 
 //   const navigate = useNavigate();
+//   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 //   const handleChange = (e) => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
@@ -174,7 +177,8 @@ export default Register;
 //     };
 
 //     try {
-//       const response = await axios.post('http://localhost:5000/api/auth/register', payload);
+//       const response = await axios.post(`${BACKEND_URL}/api/auth/register`, payload);
+      
 //       Swal.fire({
 //         icon: 'success',
 //         title: 'Registration Successful',
@@ -195,15 +199,53 @@ export default Register;
 //   };
 
 //   return (
-//     <GoogleOAuthProvider clientId="380766267990-n0mvq5qd9383rei6tllonpdrb05ve4t6.apps.googleusercontent.com">
+//     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
 //       <div className="register-container">
 //         <form onSubmit={handleSubmit} className="register-form">
 //           <h2>Register</h2>
-//           <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-//           <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-//           <input name="mobile" placeholder="Mobile Number" value={form.mobile} onChange={handleChange} required />
-//           <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-//           <input type="password" name="confirmPassword" placeholder="Confirm Password" value={form.confirmPassword} onChange={handleChange} required />
+
+//           <input
+//             name="name"
+//             placeholder="Name"
+//             value={form.name}
+//             onChange={handleChange}
+//             required
+//           />
+
+//           <input
+//             name="email"
+//             type="email"
+//             placeholder="Email"
+//             value={form.email}
+//             onChange={handleChange}
+//             required
+//           />
+
+//           <input
+//             name="mobile"
+//             placeholder="Mobile Number"
+//             value={form.mobile}
+//             onChange={handleChange}
+//             required
+//           />
+
+//           <input
+//             type="password"
+//             name="password"
+//             placeholder="Password"
+//             value={form.password}
+//             onChange={handleChange}
+//             required
+//           />
+
+//           <input
+//             type="password"
+//             name="confirmPassword"
+//             placeholder="Confirm Password"
+//             value={form.confirmPassword}
+//             onChange={handleChange}
+//             required
+//           />
 
 //           <button type="submit">Register</button>
 
@@ -222,3 +264,4 @@ export default Register;
 // };
 
 // export default Register;
+
